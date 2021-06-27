@@ -4,6 +4,7 @@ import happyImg from "../../assets/images/happy.png";
 import instagramImg from "../../assets/images/instagram-logo.png";
 import gmailImg from "../../assets/images/gmail-logo.png";
 import behanceImg from "../../assets/images/behance-logo.png";
+import { FaTrashAlt } from "react-icons/fa";
 
 import {
   Container,
@@ -14,7 +15,9 @@ import {
   Div,
   ContainerContact,
   ContainerHeader,
-  DivContact
+  DivContact,
+  Button,
+  ContainerButton,
 } from "./styles";
 import { database } from "../../services/firebase";
 import { useAuth } from "../../hooks/useAuth";
@@ -60,24 +63,36 @@ export function Home() {
 
       const firebaseFiles: FirebaseFiles = data.files ?? {};
 
-      const parsedQuestions = Object.entries(firebaseFiles).map(
-        ([key, value]) => {
-          return {
-            id: key,
-            content: value.content,
-            author: value.author,
-          };
-        }
-      );
+      const parsedFiles = Object.entries(firebaseFiles).map(([key, value]) => {
+        return {
+          id: key,
+          content: value.content,
+          author: value.author,
+        };
+      });
 
-      console.log(parsedQuestions);
-      setPhotos(parsedQuestions);
+      setPhotos(parsedFiles);
     });
 
     return () => {
       fileRef.off("value");
     };
   }, [user?.id]);
+
+  function desableButton() {
+    if (user && user.id === `${process.env.REACT_APP_APP_ID_GMAIL}`) {
+      return true;
+    }
+    return false;
+  }
+
+  async function deletePhoto(id: string) {
+    if (user && user.id === `${process.env.REACT_APP_APP_ID_GMAIL}`) {
+      if (window.confirm("Tem certeza que deseja excluir essa foto?")) {
+        await database.ref(`home/files/${id}`).remove();
+      }
+    }
+  }
 
   return (
     <Container>
@@ -107,11 +122,24 @@ export function Home() {
           return (
             <Div>
               <Imagem src={photo.content} alt="imagem" />
+              <ContainerButton>
+                <Button
+                  onClick={() => deletePhoto(photo.id)}
+                  disabled={desableButton() === false}
+                >
+                  {desableButton() ? <FaTrashAlt /> : ""}
+                </Button>
+              </ContainerButton>
             </Div>
           );
         })}
       </Body>
-      <Footer>Projeto realizado por <a href="https://www.linkedin.com/in/ibsiany/" target="_blank">Ibsiany Dias</a></Footer>
+      <Footer>
+        Projeto realizado por{" "}
+        <a href="https://www.linkedin.com/in/ibsiany/" target="_blank">
+          Ibsiany Dias
+        </a>
+      </Footer>
     </Container>
   );
 }

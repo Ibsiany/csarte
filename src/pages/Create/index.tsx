@@ -6,7 +6,7 @@ import { useAuth } from "../../hooks/useAuth";
 
 export function Create() {
   const { user } = useAuth();
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
 
   async function createFile() {
     if (user && user.id === `${process.env.REACT_APP_APP_ID_GMAIL}`) {
@@ -19,11 +19,12 @@ export function Create() {
       };
 
       await database.ref(`home/files`).push(card);
-      setValue('');
+      setValue("");
       toast.success("Arquivo salvo com sucesso.");
+    } else {
+      toast.error("Você não tem permissão para executar essa função.");
+      setValue("");
     }
-    toast.error("Você não tem permissão para executar essa função.");
-    setValue('');
   }
 
   return (
@@ -33,7 +34,11 @@ export function Create() {
         <h1> Cadastro de fotos </h1>
       </Header>
       <Body>
-        <Input type="text" onChange={(event) => setValue(event.target.value)} value={value}/>
+        <Input
+          type="text"
+          onChange={(event) => setValue(event.target.value)}
+          value={value}
+        />
         <Button onClick={createFile}>Cadastrar URL da foto</Button>
       </Body>
     </Container>

@@ -29,6 +29,30 @@ export const Header = styled.header`
   }
 `;
 
+export const ContainerHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem;
+  width: 70%;
+  @media (max-width: 900px) {
+    justify-content: flex-start;
+    font-size: 0.5rem;
+  }
+`;
+
+export const ContainerContact = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem;
+  @media (max-width: 900px) {
+    font-size: 0.7rem;
+  }
+`;
+
 export const Body = styled.body`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -48,23 +72,6 @@ export const Body = styled.body`
   }
 `;
 
-export const ContainerHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 1rem;
-  width: 70%;
-`;
-
-export const ContainerContact = styled.div`
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 1rem;
-`;
-
 export const DivContact = styled.div`
   display: flex;
   align-items: center;
@@ -80,6 +87,7 @@ export const Div = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
 `;
 
 export const Imagem = styled.img`
@@ -90,6 +98,27 @@ export const Imagem = styled.img`
   height: auto;
 `;
 
+export const ContainerButton = styled.div`
+  display: flex;
+  height: 10rem;
+  &disabled {
+    display: none;
+  }
+`;
+
+export const Button = styled.button`
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  background: transparent;
+  border: none;
+
+  &disabled {
+    display: none;
+    cursor: not-allowed;
+  }
+`;
+
 export const Footer = styled.footer`
   display: flex;
   align-items: center;
@@ -98,9 +127,9 @@ export const Footer = styled.footer`
   background: gray;
   width: 100vw;
 
-  a{
+  a {
     color: blue;
     padding-left: 0.5rem;
-    text-decoration: underline
+    text-decoration: underline;
   }
 `;
