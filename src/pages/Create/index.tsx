@@ -9,7 +9,7 @@ export function Create() {
   const [value, setValue] = useState('');
 
   async function createFile() {
-    if (user && user.id === '1a2nVtKmgLM6a4kHU9qyRMvddJ72') {
+    if (user && user.id === `${process.env.REACT_APP_APP_ID_GMAIL}`) {
       const card = {
         content: value,
         author: {
