@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import happyImg from "../../assets/images/happy.png";
 import instagramImg from "../../assets/images/instagram-logo.png";
 import gmailImg from "../../assets/images/gmail-logo.png";
@@ -21,63 +20,12 @@ import {
 } from "./styles";
 import { database } from "../../services/firebase";
 import { useAuth } from "../../hooks/useAuth";
-import { useState } from "react";
-
-type IPhotos = {
-  id: string;
-  author: {
-    name: string;
-    avatar: string;
-  };
-  content: string;
-};
-
-type FirebaseFiles = Record<
-  string,
-  {
-    author: {
-      name: string;
-      avatar: string;
-    };
-    content: string;
-    isAnswered: boolean;
-    isHighlighted: boolean;
-    likes: Record<
-      string,
-      {
-        authorId: string;
-      }
-    >;
-  }
->;
+import { useFiles } from "../../hooks/useFiles";
 
 export function Home() {
   const { user } = useAuth();
-  const [photos, setPhotos] = useState<IPhotos[]>([]);
+  const {photos} = useFiles()
 
-  useEffect(() => {
-    const fileRef = database.ref(`home`);
-
-    fileRef.on("value", (file) => {
-      const data = file.val();
-
-      const firebaseFiles: FirebaseFiles = data.files ?? {};
-
-      const parsedFiles = Object.entries(firebaseFiles).map(([key, value]) => {
-        return {
-          id: key,
-          content: value.content,
-          author: value.author,
-        };
-      });
-
-      setPhotos(parsedFiles);
-    });
-
-    return () => {
-      fileRef.off("value");
-    };
-  }, [user?.id]);
 
   function desableButton() {
     if (user && user.id === `${process.env.REACT_APP_APP_ID_GMAIL}`) {
