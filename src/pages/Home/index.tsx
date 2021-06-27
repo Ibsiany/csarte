@@ -105,15 +105,15 @@ export function Home() {
         <ContainerContact>
           Faça já seu orçamento:
           <DivContact>
-            <Link to="https://www.instagram.com/planetate.rra/" target="_blank">
-              <img src={instagramImg} />
-            </Link>
-            <Link to="https://www.behance.net/cibellestefany" target="_blank">
-              <img src={gmailImg} />
-            </Link>
-            <Link to="mailto:planetacsgc@gmail.com" target="_blank">
-              <img src={behanceImg} />
-            </Link>
+            <a href="mailto:planetacsgc@gmail.com" target="_blank">
+              <img src={gmailImg} alt="behance"/>
+            </a>
+            <a href="https://www.instagram.com/planetate.rra/" target="_blank">
+              <img src={instagramImg} alt="instagram"/>
+            </a>
+            <a href="https://www.behance.net/cibellestefany" target="_blank">
+              <img src={behanceImg} alt="gmail"/>
+            </a>
           </DivContact>
         </ContainerContact>
       </Header>
@@ -121,7 +121,9 @@ export function Home() {
         {photos.map((photo) => {
           return (
             <Div>
-              <Imagem src={photo.content} alt="imagem" />
+              <a href={photo.content} target="_blank">
+                <Imagem src={photo.content} alt="imagem" />
+              </a>
               <ContainerButton>
                 <Button
                   onClick={() => deletePhoto(photo.id)}
