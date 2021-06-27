@@ -26,8 +26,6 @@ export function Create() {
     setValue('');
   }
 
-  console.log(user)
-
   return (
     <Container>
       <Toaster position="top-right" reverseOrder={false} />
