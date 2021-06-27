@@ -6,12 +6,15 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+
   background-color: #d9e4f5;
   background-image: linear-gradient(315deg, #d9e4f5 0%, #f5e3e6 74%);
   opacity: 0.7;
   display: flex;
   align-items: center;
-  justify-content: center;
+  padding: 1rem;
   height: 6.5rem;
   width: 100vw;
 
@@ -39,9 +42,37 @@ export const Body = styled.body`
   padding-top: 7.5rem;
   padding-bottom: 1rem;
 
-  @media(max-width: 900px){
+  @media (max-width: 900px) {
     display: flex;
     flex-direction: column;
+  }
+`;
+
+export const ContainerHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem;
+  width: 70%;
+`;
+
+export const ContainerContact = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem;
+`;
+
+export const DivContact = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    max-width: 2rem;
+    max-height: 2rem;
+    margin-left: 0.5rem;
   }
 `;
 
@@ -60,15 +91,16 @@ export const Imagem = styled.img`
 `;
 
 export const Footer = styled.footer`
-  background-color: #d9e4f5;
-  background-image: linear-gradient(315deg, #d9e4f5 0%, #f5e3e6 74%);
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 0.8;
+  background: gray;
   width: 100vw;
-  img {
-    max-width: 2rem;
-    max-height: 2rem;
-    margin-left: 0.5rem;
+
+  a{
+    color: blue;
+    padding-left: 0.5rem;
+    text-decoration: underline
   }
 `;
