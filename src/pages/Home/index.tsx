@@ -56,7 +56,7 @@ export function Home() {
             <a href="mailto:planetacsgc@gmail.com" target="_blank">
               <img src={gmailImg} alt="behance"/>
             </a>
-            <a href="https://www.instagram.com/planetate.rra/" target="_blank">
+            <a href="https://www.instagram.com/cstefanyart/" target="_blank">
               <img src={instagramImg} alt="instagram"/>
             </a>
             <a href="https://www.behance.net/cibellestefany" target="_blank">
