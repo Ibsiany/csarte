@@ -123,9 +123,11 @@ export const Footer = styled.footer`
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.8;
-  background: gray;
+  opacity: 0.7;
+  background: #A9A9A9;
+  color: black;
   width: 100vw;
+  font-size: 0.8rem;
 
   a {
     color: blue;
